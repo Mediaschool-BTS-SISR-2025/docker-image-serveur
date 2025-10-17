@@ -1,0 +1,71 @@
+# La ligne 'version' n'est plus nécessaire, on peut la supprimer.
+
+services:
+  # Le service backend
+  backend:
+    build: ./backend
+    container_name: mediaschoold-backend
+    restart: unless-stopped
+    volumes:
+      - ./backend/src:/var/www/html
+    networks:
+      - mediaschoold-net
+    expose:
+      - "9000"
+
+  # Le service frontend
+  frontend:
+    build: ./frontend
+    container_name: mediaschoold-frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      # Le frontend est accessible depuis l'extérieur sur le port 3000
+      - "3000:3000"
+    networks:
+      - mediaschoold-net
+    depends_on:
+      - backend
+
+  # La base de données
+  db:
+    image: mariadb:latest
+    container_name: mediaschoold-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mediaschooldb
+      MYSQL_USER: mediaschooluser
+      MYSQL_PASSWORD: mediaschoolpass
+    ports:
+      # AJOUTÉ : Rend la base de données accessible depuis votre PC (localhost) sur le port 3306
+      # Utile pour se connecter avec des outils comme DBeaver, TablePlus, etc.
+      - "3306:3306"
+    networks:
+      - mediaschoold-net
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  # NOUVEAU SERVICE : phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: mediaschoold-phpmyadmin
+    restart: unless-stopped
+    ports:
+      # L'interface de phpMyAdmin sera accessible sur le port 8080
+      - "8080:80"
+    environment:
+      # Indique à phpMyAdmin de se connecter au service nommé 'db'
+      PMA_HOST: db
+    networks:
+      - mediaschoold-net
+    depends_on:
+      # S'assure que la base de données est démarrée avant phpMyAdmin
+      - db
+
+volumes:
+  dbdata:
+
+networks:
+  mediaschoold-net:

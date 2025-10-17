@@ -1,0 +1,14 @@
+FROM php:8.3-fpm-alpine
+
+RUN apk add --no-cache \
+    bash git unzip zip curl mariadb-dev icu-dev oniguruma-dev \
+    autoconf g++ make zlib-dev libzip-dev
+
+RUN docker-php-ext-configure intl \
+ && docker-php-ext-install pdo pdo_mysql intl zip bcmath opcache
+
+WORKDIR /var/www/html
+COPY ./src .
+
+EXPOSE 9000
+CMD ["php-fpm"]
