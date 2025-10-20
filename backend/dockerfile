@@ -1,10 +1,9 @@
-# On part d'une image officielle PHP avec FPM (FastCGI Process Manager)
-# On choisit la version 8.2 et 'alpine' pour sa légèreté
+# ./backend/Dockerfile
+
 FROM php:8.2-fpm-alpine
 
-# C'est une bonne pratique d'installer les extensions PHP dont on aura besoin.
-# pdo_mysql est indispensable pour se connecter à MariaDB/MySQL.
+# Installe l'extension pour MariaDB/MySQL (déjà là)
 RUN docker-php-ext-install pdo_mysql
 
-# On copie le code source PHP dans le bon dossier
+# Copie le code source PHP
 COPY src/ /var/www/html/
