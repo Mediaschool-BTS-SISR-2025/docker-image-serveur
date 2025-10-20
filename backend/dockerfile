@@ -1,7 +1,10 @@
-# On utilise une image officielle qui inclut PHP et le serveur web Apache,
-# déjà préconfiguré pour fonctionner ensemble.
-FROM php:8.2-apache
+# On part d'une image officielle PHP avec FPM (FastCGI Process Manager)
+# On choisit la version 8.2 et 'alpine' pour sa légèreté
+FROM php:8.2-fpm-alpine
 
-# On copie le code source de notre application (le dossier ./src)
-# dans le dossier du serveur web à l'intérieur du conteneur (/var/www/html).
-COPY ./src /var/www/html/
+# C'est une bonne pratique d'installer les extensions PHP dont on aura besoin.
+# pdo_mysql est indispensable pour se connecter à MariaDB/MySQL.
+RUN docker-php-ext-install pdo_mysql
+
+# On copie le code source PHP dans le bon dossier
+COPY src/ /var/www/html/
