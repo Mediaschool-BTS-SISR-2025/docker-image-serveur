@@ -1,29 +1,32 @@
 # Chaque service est une brique de notre application MediaSchool.
 services:
-  # Le service frontend : utilise Nginx pour servir les fichiers statiques.
+
+  # Le service frontend : utilise Nginx pour servir le fichier index.html.
   frontend:
     build: ./frontend
     container_name: mediaschoold-frontend
     restart: unless-stopped
     ports:
-      - "3000:80" # Le site sera visible sur http://localhost:3000
+      # Le port 80 de Nginx est accessible sur le port 3000 de ton PC.
+      - "3000:80"
 
   # Le service backend : la logique de l'application.
-backend:
+  backend:
     build: ./backend
     container_name: mediaschoold-backend
     restart: unless-stopped
     volumes:
+      # Synchronise ton code backend en direct.
       - ./backend/src:/var/www/html
-    # Cette ligne est essentielle pour que le test fonctionne
     ports:
+      # Rend le backend accessible sur localhost:9000 pour les tests.
       - "9000:9000"
     networks:
       - mediaschoold-net
 
   # Le service de base de données.
   db:
-    image: mariadb:latest
+    image: mariadb:11.5 # MODIFICATION ICI : On utilise une version stable et spécifique.
     container_name: mediaschoold-db
     restart: always
     environment:
@@ -32,6 +35,7 @@ backend:
       MYSQL_USER: mediaschooluser
       MYSQL_PASSWORD: mediaschoolpass
     ports:
+      # Rend la base de données accessible pour des outils comme DBeaver.
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
@@ -44,6 +48,7 @@ backend:
     container_name: mediaschoold-phpmyadmin
     restart: unless-stopped
     ports:
+      # L'interface de phpMyAdmin sera accessible sur localhost:8080.
       - "8080:80"
     environment:
       PMA_HOST: db
@@ -52,7 +57,9 @@ backend:
     depends_on:
       - db
 
-# On définit le réseau pour que les services puissent communiquer.
+# --- Configuration Globale ---
+
+# On définit le réseau pour que les services puissent communiquer entre eux.
 networks:
   mediaschoold-net:
 
