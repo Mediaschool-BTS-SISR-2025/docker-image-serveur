@@ -62,8 +62,8 @@
             responseDiv.style.color = '#65676b';
 
             try {
-                // On interroge le backend sur le port 9000
-                const response = await fetch('http://localhost:9000');
+                // On interroge le backend sur le port 9090
+                const response = await fetch('http://localhost:9090');
                 
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP: ${response.status}`);

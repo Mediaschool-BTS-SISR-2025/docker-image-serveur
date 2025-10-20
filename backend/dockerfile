@@ -1,14 +1,7 @@
-FROM php:8.3-fpm-alpine
+# On utilise une image officielle qui inclut PHP et le serveur web Apache,
+# déjà préconfiguré pour fonctionner ensemble.
+FROM php:8.2-apache
 
-RUN apk add --no-cache \
-    bash git unzip zip curl mariadb-dev icu-dev oniguruma-dev \
-    autoconf g++ make zlib-dev libzip-dev
-
-RUN docker-php-ext-configure intl \
- && docker-php-ext-install pdo pdo_mysql intl zip bcmath opcache
-
-WORKDIR /var/www/html
-COPY ./src .
-
-EXPOSE 9000
-CMD ["php-fpm"]
+# On copie le code source de notre application (le dossier ./src)
+# dans le dossier du serveur web à l'intérieur du conteneur (/var/www/html).
+COPY ./src /var/www/html/

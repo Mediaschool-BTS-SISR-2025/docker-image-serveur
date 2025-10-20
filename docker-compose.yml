@@ -19,8 +19,8 @@ services:
       # Synchronise ton code backend en direct.
       - ./backend/src:/var/www/html
     ports:
-      # Rend le backend accessible sur localhost:9000 pour les tests.
-      - "9000:9000"
+      # Rend le backend accessible sur localhost:9090 pour les tests.
+      - "9090:9090"
     networks:
       - mediaschoold-net
 
