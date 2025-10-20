@@ -16,16 +16,6 @@ Clonez ou téléchargez ce projet sur votre ordinateur.
 
 Avant de lancer quoi que ce soit, vous devez placer vos fichiers de code dans les bons dossiers. La structure est la suivante :
 
-/mediaschoold-project/
-├── backend/
-│   └── src/          <-- 💻 METTEZ TOUT VOTRE CODE BACKEND ICI
-│
-├── frontend/
-│   └── src/          <-- 🎨 METTEZ TOUT VOTRE CODE FRONTEND ICI
-│
-├── docker-compose.yml
-└── README.md
-
     Pour le Backend (PHP, Node.js, etc.) : placez tous vos fichiers dans le dossier ./backend/src/.
 
     Pour le Frontend (React, Vue, HTML/CSS) : placez tous vos fichiers dans le dossier ./frontend/src/.
