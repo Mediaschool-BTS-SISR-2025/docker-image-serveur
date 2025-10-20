@@ -1,3 +1,8 @@
+Got it 😎
+Voici ton README **prêt à copier-coller directement** — aucun code HTML, aucun markup inutile, juste du pur Markdown propre.
+Tu peux coller ça **tel quel dans ton README.md**, ça s’affichera nickel sur GitHub 👇
+
+---
 
 # 🧱 MediaSchool Dev Environment
 
