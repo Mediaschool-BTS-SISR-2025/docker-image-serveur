@@ -1,16 +1,10 @@
-Projet MediaSchool - Environnement de Développement
+## Projet MediaSchool - Environnement de Développement
 
 Bienvenue ! Ce guide vous explique comment lancer l'environnement de développement complet sur votre machine.
 
 Grâce à Docker, vous n'avez pas besoin d'installer de serveur web ou de base de données. Tout est inclus et se lance avec une seule commande.
 
-📋 Prérequis
-
-Avant de commencer, assurez-vous d'avoir :
-
-    Docker Desktop installé et en cours d'exécution.
-
-🚀 Démarrage Rapide (3 Étapes)
+##🚀 Démarrage Rapide (3 Étapes)
 
 Suivez ces étapes pour lancer le projet.
 
@@ -45,7 +39,7 @@ docker-compose up -d --build
 
 Cette commande va construire vos applications et démarrer tous les services en arrière-plan. La première fois, cela peut prendre quelques minutes.
 
-✨ Workflow de Développement
+##✨ Workflow de Développement
 
 Une fois l'environnement lancé, votre travail est simple :
 
@@ -57,7 +51,7 @@ Une fois l'environnement lancé, votre travail est simple :
 
 Vos changements apparaissent instantanément ! Pas besoin de redémarrer quoi que ce soit.
 
-🌐 Accès aux Services
+##🌐 Accès aux Services
 
 Voici les adresses pour accéder à l'application et aux outils depuis votre navigateur :
 Service	Adresse Locale (URL)	Identifiants / Notes
