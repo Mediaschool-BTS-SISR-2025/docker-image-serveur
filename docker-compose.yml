@@ -1,7 +1,20 @@
-# La ligne 'version' n'est plus nécessaire, on peut la supprimer.
-
+# Chaque service est une brique de notre application.
 services:
-  # Le service backend
+  # Le service frontend : ce que l'utilisateur voit.
+  frontend:
+    build: ./frontend
+    container_name: mediaschoold-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Rend le site accessible sur http://localhost:3000
+    volumes:
+      - ./frontend/src:/app/src # Synchronise le code en direct
+    networks:
+      - mediaschoold-net
+    depends_on:
+      - backend
+
+  # Le service backend : la logique de l'application.
   backend:
     build: ./backend
     container_name: mediaschoold-backend
@@ -11,26 +24,11 @@ services:
     networks:
       - mediaschoold-net
     expose:
-      - "9000"
+      - "9000" # Uniquement accessible par les autres conteneurs
 
-  # Le service frontend
-  frontend:
-    build: ./frontend
-    container_name: mediaschoold-frontend
-    restart: unless-stopped
-    volumes:
-      - ./frontend/src:/app/src
-    ports:
-      # Le frontend est accessible depuis l'extérieur sur le port 3000
-      - "3000:3000"
-    networks:
-      - mediaschoold-net
-    depends_on:
-      - backend
-
-  # La base de données
+  # Le service de base de données.
   db:
-    image: mariadb:latest
+    image: mariadb:11.2 # On utilise une version précise pour la stabilité.
     container_name: mediaschoold-db
     restart: always
     environment:
@@ -39,33 +37,30 @@ services:
       MYSQL_USER: mediaschooluser
       MYSQL_PASSWORD: mediaschoolpass
     ports:
-      # AJOUTÉ : Rend la base de données accessible depuis votre PC (localhost) sur le port 3306
-      # Utile pour se connecter avec des outils comme DBeaver, TablePlus, etc.
-      - "3306:3306"
-    networks:
-      - mediaschoold-net
+      - "3306:3306" # Pour se connecter avec un outil externe
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - mediaschoold-net
 
-  # NOUVEAU SERVICE : phpMyAdmin
+  # L'interface pour gérer la base de données.
   phpmyadmin:
     image: phpmyadmin
     container_name: mediaschoold-phpmyadmin
     restart: unless-stopped
     ports:
-      # L'interface de phpMyAdmin sera accessible sur le port 8080
-      - "8080:80"
+      - "8080:80" # Accessible sur http://localhost:8080
     environment:
-      # Indique à phpMyAdmin de se connecter au service nommé 'db'
       PMA_HOST: db
     networks:
       - mediaschoold-net
     depends_on:
-      # S'assure que la base de données est démarrée avant phpMyAdmin
       - db
 
-volumes:
-  dbdata:
-
+# On définit le réseau pour que les services puissent communiquer.
 networks:
   mediaschoold-net:
+
+# On définit le volume pour que les données de la BDD ne soient pas perdues.
+volumes:
+  dbdata:
