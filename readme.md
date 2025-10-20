@@ -4,15 +4,15 @@ Bienvenue ! Ce guide vous explique comment lancer l'environnement de développem
 
 Grâce à Docker, vous n'avez pas besoin d'installer de serveur web ou de base de données. Tout est inclus et se lance avec une seule commande.
 
-##🚀 Démarrage Rapide (3 Étapes)
+## 🚀 Démarrage Rapide (3 Étapes)
 
 Suivez ces étapes pour lancer le projet.
 
-1. Récupérez le Projet
+# 1. Récupérez le Projet
 
 Clonez ou téléchargez ce projet sur votre ordinateur.
 
-2. Ajoutez Votre Code (Étape Cruciale)
+# 2. Ajoutez Votre Code (Étape Cruciale)
 
 Avant de lancer quoi que ce soit, vous devez placer vos fichiers de code dans les bons dossiers. La structure est la suivante :
 
@@ -20,7 +20,7 @@ Avant de lancer quoi que ce soit, vous devez placer vos fichiers de code dans le
 
     Pour le Frontend (React, Vue, HTML/CSS) : placez tous vos fichiers dans le dossier ./frontend/src/.
 
-3. Lancez l'Environnement
+# 3. Lancez l'Environnement
 
 Ouvrez un terminal à la racine du projet (là où se trouve ce README) et lancez cette unique commande :
 Bash
@@ -29,7 +29,7 @@ docker-compose up -d --build
 
 Cette commande va construire vos applications et démarrer tous les services en arrière-plan. La première fois, cela peut prendre quelques minutes.
 
-##✨ Workflow de Développement
+## ✨ Workflow de Développement
 
 Une fois l'environnement lancé, votre travail est simple :
 
@@ -41,7 +41,7 @@ Une fois l'environnement lancé, votre travail est simple :
 
 Vos changements apparaissent instantanément ! Pas besoin de redémarrer quoi que ce soit.
 
-##🌐 Accès aux Services
+## 🌐 Accès aux Services
 
 Voici les adresses pour accéder à l'application et aux outils depuis votre navigateur :
 Service	Adresse Locale (URL)	Identifiants / Notes
@@ -57,7 +57,7 @@ Identifiants pour la base de données (et phpMyAdmin) :
 
     Base de données : mediaschooldb
 
-🛠️ Commandes Docker Utiles
+# 🛠️ Commandes Docker Utiles
 
     Pour arrêter proprement tous les services :
     Bash
