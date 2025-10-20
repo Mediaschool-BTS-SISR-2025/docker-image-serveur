@@ -9,12 +9,15 @@ services:
       - "3000:80" # Le site sera visible sur http://localhost:3000
 
   # Le service backend : la logique de l'application.
-  backend:
+backend:
     build: ./backend
     container_name: mediaschoold-backend
     restart: unless-stopped
     volumes:
       - ./backend/src:/var/www/html
+    # Cette ligne est essentielle pour que le test fonctionne
+    ports:
+      - "9000:9000"
     networks:
       - mediaschoold-net
 

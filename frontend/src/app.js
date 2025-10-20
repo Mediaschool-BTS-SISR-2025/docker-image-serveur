@@ -1,1 +1,0 @@
-console.log("Hello Node.js inside the same container!");

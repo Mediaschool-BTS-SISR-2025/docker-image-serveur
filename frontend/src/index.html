@@ -1,1 +1,85 @@
-<h1>Mon App MediaSchool</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaSchool API Tester</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1c1e21;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        button {
+            font-size: 1em;
+            font-weight: 600;
+            padding: 12px 24px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background-color: #1877f2;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #166fe5;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>MEDIASCHOOL API TESTER</h1>
+        <button onclick="pingBackend()">► Lancer le test de connexion</button>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function pingBackend() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.textContent = 'Envoi de la requête...';
+            responseDiv.style.color = '#65676b';
+
+            try {
+                // On interroge le backend sur le port 9000
+                const response = await fetch('http://localhost:9000');
+                
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+
+                const data = await response.text();
+                responseDiv.textContent = `✅ Succès ! Réponse du backend : "${data}"`;
+                responseDiv.style.color = '#31a24c';
+
+            } catch (error) {
+                console.error('Erreur lors de la requête:', error);
+                responseDiv.textContent = '❌ Échec de la connexion au backend. Vérifiez les logs !';
+                responseDiv.style.color = '#fa383e';
+            }
+        }
+    </script>
+
+</body>
+</html>
