@@ -248,17 +248,17 @@
         </header>
         <main class="main-grid">
             <div class="card">
-                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.54 15H17l-2 6-4-12-2 6H2.46"></path></svg></div><h2>API Status</h2></div>
+                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.54 15H17l-2 6-4-12-2 6H2.46"></path></svg></div><h2>Backend Link Status :</h2></div>
                 <button onclick="pingBackend()">Lancer le Ping</button>
-                <div id="response" class="response-box">En attente de commande...</div>
+                <div id="response" class="response-box">En attente de connexion...</div>
             </div>
             <div class="card">
-                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"></path><path d="M8 8H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 16h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4"></path></svg></div><h2>Database</h2></div>
+                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"></path><path d="M8 8H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 16h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4"></path></svg></div><h2>Database - MySQL :</h2></div>
                 <button onclick="window.open('http://localhost:8080', '_blank')">Ouvrir phpMyAdmin</button>
             </div>
             
             <div id="host-info-card" class="card">
-                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><line x1="2" y1="8" x2="22" y2="8"></line><line x1="2" y1="14" x2="22" y2="14"></line></svg></div><h2>Host System Monitor (Temps réel)</h2></div>
+                <div class="card-header"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><line x1="2" y1="8" x2="22" y2="8"></line><line x1="2" y1="14" x2="22" y2="14"></line></svg></div><h2>Informations sur le serveur :</h2></div>
                 <div id="host-info-grid"><div class="loader"></div></div>
             </div>
         </main>
