@@ -1,18 +1,12 @@
-# Chaque service est une brique de notre application.
+# Chaque service est une brique de notre application MediaSchool.
 services:
-  # Le service frontend : ce que l'utilisateur voit.
+  # Le service frontend : utilise Nginx pour servir les fichiers statiques.
   frontend:
     build: ./frontend
     container_name: mediaschoold-frontend
     restart: unless-stopped
     ports:
-      - "3000:3000" # Rend le site accessible sur http://localhost:3000
-    volumes:
-      - ./frontend/src:/app/src # Synchronise le code en direct
-    networks:
-      - mediaschoold-net
-    depends_on:
-      - backend
+      - "3000:80" # Le site sera visible sur http://localhost:3000
 
   # Le service backend : la logique de l'application.
   backend:
@@ -23,12 +17,10 @@ services:
       - ./backend/src:/var/www/html
     networks:
       - mediaschoold-net
-    expose:
-      - "9000" # Uniquement accessible par les autres conteneurs
 
   # Le service de base de données.
   db:
-    image: mariadb:11.2 # On utilise une version précise pour la stabilité.
+    image: mariadb:latest
     container_name: mediaschoold-db
     restart: always
     environment:
@@ -37,7 +29,7 @@ services:
       MYSQL_USER: mediaschooluser
       MYSQL_PASSWORD: mediaschoolpass
     ports:
-      - "3306:3306" # Pour se connecter avec un outil externe
+      - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
     networks:
@@ -49,7 +41,7 @@ services:
     container_name: mediaschoold-phpmyadmin
     restart: unless-stopped
     ports:
-      - "8080:80" # Accessible sur http://localhost:8080
+      - "8080:80"
     environment:
       PMA_HOST: db
     networks:

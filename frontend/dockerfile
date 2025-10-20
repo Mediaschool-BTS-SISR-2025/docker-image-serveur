@@ -1,9 +1,6 @@
-FROM node:20-alpine
+# Étape 1 : Utiliser une image officielle et très légère de Nginx.
+FROM nginx:1.25-alpine
 
-WORKDIR /usr/src/app
-COPY ./src .
-
-RUN [ -f package.json ] && npm install || echo "No package.json"
-
-EXPOSE 3000
-CMD ["node", "app.js"]
+# Étape 2 : Copier les fichiers de votre site web (HTML, CSS, images) dans le dossier du serveur Nginx.
+# Le dossier `./src` local sera copié à l'intérieur de l'image.
+COPY ./src /usr/share/nginx/html
