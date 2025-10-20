@@ -1,91 +1,125 @@
-Projet MediaSchool - Environnement de Développement
 
-Bienvenue ! Ce guide vous explique comment lancer l'environnement de développement complet sur votre machine.
+# 🧱 MediaSchool Dev Environment
 
-Grâce à Docker, vous n'avez pas besoin d'installer de serveur web ou de base de données. Tout est inclus et se lance avec une seule commande.
+🚀 Environnement complet Dockerisé pour MediaSchool — un seul `docker-compose up` et c’est parti !
 
-📋 Prérequis
+---
 
-Avant de commencer, assurez-vous d'avoir :
+## 🏁 Démarrage Rapide
 
-    Docker Desktop installé et en cours d'exécution.
+### 1️⃣ Cloner le projet
 
-🚀 Démarrage Rapide (3 Étapes)
+```bash
+git clone <url_du_projet>
+cd mediaschool
+```
 
-Suivez ces étapes pour lancer le projet.
+---
 
-1. Récupérez le Projet
+### 2️⃣ Ajouter votre code
 
-Clonez ou téléchargez ce projet sur votre ordinateur.
+Placez vos fichiers dans la bonne structure :
 
-2. Ajoutez Votre Code (Étape Cruciale)
-
-Avant de lancer quoi que ce soit, vous devez placer vos fichiers de code dans les bons dossiers. La structure est la suivante :
-
-/mediaschoold-project/
+```
+.
 ├── backend/
-│   └── src/          <-- 💻 METTEZ TOUT VOTRE CODE BACKEND ICI
+│   └── src/        ← votre code backend (PHP, Node.js, etc.)
 │
-├── frontend/
-│   └── src/          <-- 🎨 METTEZ TOUT VOTRE CODE FRONTEND ICI
-│
-├── docker-compose.yml
-└── README.md
+└── frontend/
+    └── src/        ← votre code frontend (React, Vue, HTML/CSS, etc.)
+```
 
-    Pour le Backend (PHP, Node.js, etc.) : placez tous vos fichiers dans le dossier ./backend/src/.
+---
 
-    Pour le Frontend (React, Vue, HTML/CSS) : placez tous vos fichiers dans le dossier ./frontend/src/.
+### 3️⃣ Lancer l’environnement
 
-3. Lancez l'Environnement
+Depuis la racine du projet :
 
-Ouvrez un terminal à la racine du projet (là où se trouve ce README) et lancez cette unique commande :
-Bash
-
+```bash
 docker-compose up -d --build
+```
 
-Cette commande va construire vos applications et démarrer tous les services en arrière-plan. La première fois, cela peut prendre quelques minutes.
+🕐 Le premier lancement peut prendre quelques minutes pendant la construction des images.
 
-✨ Workflow de Développement
+---
 
-Une fois l'environnement lancé, votre travail est simple :
+## ✨ Workflow Dev
 
-    Modifiez votre code dans les dossiers backend/src ou frontend/src.
+Une fois lancé :
 
-    Enregistrez vos fichiers.
+1. Codez dans `backend/src` ou `frontend/src`
+2. Sauvegardez vos fichiers
+3. Rafraîchissez le navigateur
 
-    Rafraîchissez votre navigateur.
+💡 Les changements s’appliquent instantanément — zéro redémarrage requis.
 
-Vos changements apparaissent instantanément ! Pas besoin de redémarrer quoi que ce soit.
+---
 
-🌐 Accès aux Services
+## 🌐 Accès aux Services
 
-Voici les adresses pour accéder à l'application et aux outils depuis votre navigateur :
-Service	Adresse Locale (URL)	Identifiants / Notes
-Site Web (Frontend)	http://localhost:3000	C'est ici que vous verrez le résultat de votre code.
-phpMyAdmin	http://localhost:8080	Pour gérer la base de données.
-Base de Données (Direct)	Hôte: localhost Port: 3306	Pour un logiciel comme DBeaver ou TablePlus.
+| Service                      | URL Locale                                     | Notes / Identifiants          |
+| ---------------------------- | ---------------------------------------------- | ----------------------------- |
+| 🖥️ Frontend (Site Web)      | [http://localhost:3000](http://localhost:3000) | Résultat de votre code        |
+| 🧮 phpMyAdmin                | [http://localhost:8080](http://localhost:8080) | Interface de gestion MySQL    |
+| 🗄️ Base de Données (direct) | `localhost:3306`                               | Pour DBeaver, TablePlus, etc. |
 
-Identifiants pour la base de données (et phpMyAdmin) :
+**Identifiants MySQL :**
 
-    Utilisateur : mediaschooluser
+```
+Utilisateur : mediaschooluser
+Mot de passe : mediaschoolpass
+Base : mediaschooldb
+```
 
-    Mot de passe : mediaschoolpass
+---
 
-    Base de données : mediaschooldb
+## 🛠️ Commandes Docker Utiles
 
-🛠️ Commandes Docker Utiles
+| Action                             | Commande                         |
+| ---------------------------------- | -------------------------------- |
+| 🚫 Stopper tous les services       | `docker-compose down`            |
+| 🧩 Voir l’état des services        | `docker-compose ps`              |
+| 🧾 Logs d’un service (ex: backend) | `docker-compose logs -f backend` |
 
-    Pour arrêter proprement tous les services :
-    Bash
+---
 
-docker-compose down
+## 🧩 Stack Technique
 
-Pour vérifier l'état des services (s'ils tournent bien) :
-Bash
+| Composant           | Technologie              |
+| ------------------- | ------------------------ |
+| 🐳 Conteneurisation | Docker & Docker Compose  |
+| ⚙️ Backend          | PHP / Node.js            |
+| 🎨 Frontend         | React / Vue / HTML / CSS |
+| 💾 Base de données  | MySQL                    |
+| 🧮 Admin DB         | phpMyAdmin               |
 
-docker-compose ps
+---
 
-Pour voir les logs d'un service en cas de bug (par exemple, le backend) :
-Bash
+## 💡 Tips & Tricks
 
-docker-compose logs -f backend
+* 🔁 Si tu modifies la config Docker :
+
+  ```bash
+  docker-compose up -d --build
+  ```
+* 🧹 Nettoyer ton environnement :
+
+  ```bash
+  docker system prune -a
+  ```
+* 🕵️‍♂️ Debug rapide :
+
+  ```bash
+  docker-compose logs -f backend
+  ```
+
+---
+
+## 👨‍💻 Auteur
+
+**Tiago Q**
+Environnement de développement prêt à coder — sans prise de tête 🧠💻
+
+Made with ❤️ & ☕ by the MediaSchool SISR Team
+
+---
