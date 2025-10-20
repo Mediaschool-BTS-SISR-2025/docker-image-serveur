@@ -63,7 +63,7 @@
 
             try {
                 // On interroge le backend sur le port 9090
-                const response = await fetch('http://localhost:9001');
+                const response = await fetch('/index.php');
                 
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP: ${response.status}`);

@@ -1,6 +1,12 @@
-# Étape 1 : Utiliser une image officielle et très légère de Nginx.
-FROM nginx:1.25-alpine
+# Utilise l'image Nginx de base
+FROM nginx:alpine
 
-# Étape 2 : Copier les fichiers de votre site web (HTML, CSS, images) dans le dossier du serveur Nginx.
-# Le dossier `./src` local sera copié à l'intérieur de l'image.
-COPY ./src /usr/share/nginx/html
+# Supprime la configuration par défaut
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copie TA configuration personnalisée
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Copie le reste de ton code frontend (HTML, JS, etc.)
+# Si ton code est dans un sous-dossier 'public' ou 'dist', ajuste le chemin
+COPY . /usr/share/nginx/html
